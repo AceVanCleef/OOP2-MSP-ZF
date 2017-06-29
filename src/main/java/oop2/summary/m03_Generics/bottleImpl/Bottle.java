@@ -10,7 +10,15 @@ public class Bottle<T extends Drink> {
     private T content;
 
     public void fill(T val){
+        System.out.println("A bottle of " + val.getClass().getName());
         content = val;
+    }
+
+    public T drinkEmpty() {
+        T c = content;
+        content = null;
+
+        return c;
     }
 
 }

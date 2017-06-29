@@ -8,6 +8,7 @@ public class HumanEatingBottle<T> {
     private T content;
 
     public void fill(T val){
+        System.out.println("An evil bottle of " + val.getClass().getName());
         content = val;
     }
 
