@@ -5,8 +5,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import oop2.summary.m04_JavaFX_GUI.borderpanebased.presentationmodel.RootPM;
 
@@ -18,8 +16,8 @@ public class RootPane extends BorderPane {
     private final RootPM pm;
 
     /* Controls */
-    private Label       label1;
-    private Label       label2;
+    private Label       titleLabel;
+    private Label       previewLabel;
     private TextField   tf1;
     private TextField   tf2;
     private Button      button;
@@ -46,52 +44,107 @@ public class RootPane extends BorderPane {
     }
 
     private void initializeParts(){
-        label1 = new Label("Titel");
-        label2 = new Label("label1");
+        titleLabel = new Label("Epic String Concatinator");
+        previewLabel = new Label();
 
         tf1 = new TextField();
         tf2 = new TextField();
 
-        button = new Button("What does it do?");
+        button = new Button("Print to Console");
 
         center = new VBox();
     }
 
     private void layoutParts(){
-        /* Gridpane: */
-        this.setTop(label1);
+        /*** Gridpane: ***/
+        this.setTop(titleLabel);
         this.setCenter(center);
         this.setBottom(button);     //button immer ganz unten
+        /*** VBox center: ***/
+        center.getChildren().addAll(tf1, tf2, previewLabel);
 
-        /* VBox center: */
-        center.getChildren().addAll(tf1, tf2, label2);
 
-        /* Resizing: Maximale Breite für Controls */
-        button.setMaxWidth(Double.MAX_VALUE);   //button width = pane width
-        //Da die Textfelder Kinder der VBox center sind -> nutzen bereits volle breite aus.
-
-        /* Beautification */
-        //Abstand zwischen Kindern. Bei VBox in vertikaler Richtung.
+        /*** #Abstände ***/
+        //Abstand zwischen Kindern. Bei VBox in vertikaler Richtung. Bei HBox in horizontaler.
         center.setSpacing(10);
         //Padding - Abstand zwischen VBox und seinen Kindern:
-        //center.setPadding(new Insets(5, 0, 5, 0));
+        center.setPadding(new Insets(5, 0, 5, 0));
         //Auch einzelne Controls können Paddings haben:
-        label1.setPadding(new Insets(5));
+        titleLabel.setPadding(new Insets(5));
+
+
+        //#enable/disableV02 (Logik im View [deprecated]): Button am Anfang disablen:
+       // button.setDisable(true);
+
+
+        /*** #ButtonMaxWidth: Maximale Breite für Controls ***/
+        button.setMaxWidth(Double.MAX_VALUE);   //button width = pane width
+        //Da die Textfelder Kinder der VBox center sind, wird ihre Breite autom. angepasst.
+
+
     }
 
     private  void addEventHandlers() {
         button.setOnAction(event -> {
-            //do stuff
+            pm.printToConsole();
+            //do other stuff / trigger logic
         });
     }
 
+
     private void addValueChangedListeners() {
-        //todo: a good example. anything that makes sense.
+        //#enable/disableV02 (Logik im View [deprecated]):  Wenn tf1.textProperty() und/oder tf2.textProperty() == "", dann disable button
+//        tf1.textProperty().addListener((observable, oldValue, newValue) -> {
+//            if(newValue.length() == 0){
+//                button.setDisable(true);
+//            } else if(tf2.getText().length() > 0) {
+//                button.setDisable(false);
+//            }
+//        });
+//        tf2.textProperty().addListener((observable, oldValue, newValue) -> {
+//            if(newValue.length() == 0){
+//                button.setDisable(true);
+//            } else if(tf1.getText().length() > 0) {
+//                button.setDisable(false);
+//            }
+//        });
+
+        /** [Hinweis: newValue, oldValue]
+         *  Von newValue (und oldValue) den gewünschten Datentyp erhalten:
+         *  - StringProperty -> newValue = String
+         *  - DoubleProperty -> newValue.doubleValue() = Double
+         *  - IntegerProperty -> newValue.intValue() = Integer
+         * */
+
+        /** [Hinweis: #enable/disableV01 (Via bindings zum View) ]
+         *  Wenn die Disablelogik (in dieser Methode) in den PM verschoben werden soll, dann braucht RootPM
+         *  folgenden Code:
+         *      - BooleanProperty disableButton = new SimpleBooleanProperty(true);
+         *      - Den EventListenerCode
+         *      - Ein Binding hier in der View zur pm.disableProperty
+         */
+
     }
 
     private void setupBindings() {
-        //todo
-       // tf1.textProperty().bindBidirectional(...);
-       // tf2.textProperty().bindBidirectional(...);
+        //Mit PM-properties binden:
+        tf1.textProperty().bindBidirectional(pm.string01Property());    //String zu String - Binding
+        tf2.textProperty().bindBidirectional(pm.string02Property());
+
+        previewLabel.textProperty().bind(pm.concatinatedStringProperty());
+
+        /** [String to Number - Bindings:]
+         *      populationField.textProperty().bindBidirectional(currentCountry.populationProperty(), new NumberStringConverter());
+         *      populationField.textProperty().unbindBidirectional(previousCountry.populationProperty().asString());
+         *
+         *      area.textProperty().bind(pm.getCountryProxy().areaProperty().asString());
+         *      area.textProperty().unbind();
+         *      Source: CountryFX
+         *
+         *  [Syntax:] aProperty.bind(bProperty)   -> aProperty gets updated by bProperty.
+         * */
+
+        //#enable/disableV01 (Via bindings zum View)
+        button.disableProperty().bind(pm.disableButtonProperty());
     }
 }
