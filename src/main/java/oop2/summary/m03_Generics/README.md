@@ -19,4 +19,4 @@ Eine Klasse mit mehreren Typparametern (hier: key-value - Paar).
 Eine generische Klasse mit constraints (extends, super)
 
 ### TestGenerics
-Zweck: Zeigt, welche Aufrufe u.ä. funktionieren oder einen Compilierfehler ergeben. (Hinweis: enthält nicht lauffähiger Code).
+Zweck: Zeigt, welche Aufrufe u.ä. funktionieren oder einen Compilierfehler ergeben..
