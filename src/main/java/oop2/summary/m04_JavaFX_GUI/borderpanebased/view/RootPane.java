@@ -5,6 +5,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import oop2.summary.m04_JavaFX_GUI.borderpanebased.presentationmodel.RootPM;
 
@@ -80,8 +82,6 @@ public class RootPane extends BorderPane {
         /*** #ButtonMaxWidth: Maximale Breite für Controls ***/
         button.setMaxWidth(Double.MAX_VALUE);   //button width = pane width
         //Da die Textfelder Kinder der VBox center sind, wird ihre Breite autom. angepasst.
-
-
     }
 
     private  void addEventHandlers() {
