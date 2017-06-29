@@ -127,13 +127,7 @@ public class RootPane extends BorderPane {
     }
 
     private void setupBindings() {
-        //Mit PM-properties binden:
-        tf1.textProperty().bindBidirectional(pm.string01Property());    //String zu String - Binding
-        tf2.textProperty().bindBidirectional(pm.string02Property());
-
-        previewLabel.textProperty().bind(pm.concatinatedStringProperty());
-
-        /** [String to Number - Bindings:]
+        /** [Hinweis: Number to String Convertion - Bindings:]
          *      populationField.textProperty().bindBidirectional(currentCountry.populationProperty(), new NumberStringConverter());
          *      populationField.textProperty().unbindBidirectional(previousCountry.populationProperty().asString());
          *
@@ -141,8 +135,16 @@ public class RootPane extends BorderPane {
          *      area.textProperty().unbind();
          *      Source: CountryFX
          *
-         *  [Syntax:] aProperty.bind(bProperty)   -> aProperty gets updated by bProperty.
+         ** [Syntax:] aProperty.bind(bProperty)   -> aProperty gets updated by bProperty.
          * */
+
+
+        //Mit PM-properties binden:
+        tf1.textProperty().bindBidirectional(pm.string01Property());    //String zu String - Binding
+        tf2.textProperty().bindBidirectional(pm.string02Property());
+
+        previewLabel.textProperty().bind(pm.concatinatedStringProperty());
+
 
         //#enable/disableV01 (Via bindings zum View)
         button.disableProperty().bind(pm.disableButtonProperty());

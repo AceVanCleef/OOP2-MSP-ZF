@@ -34,7 +34,7 @@ public class RootPM {
          *  - IntegerProperty -> newValue.intValue() = Integer
          * */
 
-        
+
 
         //updating concatinatedString
         string01Property().addListener((observable, oldValue, newValue) -> {
