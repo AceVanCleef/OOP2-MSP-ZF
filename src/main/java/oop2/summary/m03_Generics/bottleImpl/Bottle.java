@@ -14,4 +14,11 @@ public class Bottle<T extends Drink> {
         content = val;
     }
 
+    public T drinkEmpty() {
+        T c = content;
+        content = null;
+
+        return c;
+    }
+
 }
