@@ -2,6 +2,7 @@ package oop2.summary.m03_Generics.bottleImpl;
 
 import oop2.summary.m03_Generics.bottleImpl.hirarchy.Beer;
 import oop2.summary.m03_Generics.bottleImpl.hirarchy.Drink;
+import oop2.summary.m03_Generics.bottleImpl.hirarchy.RedWine;
 import oop2.summary.m03_Generics.bottleImpl.hirarchy.Wine;
 
 /**
@@ -20,7 +21,7 @@ public class Main {
 
 
         //[class Bottle<T>] means, that not only Drinks can be filled in, but also Persons!
-        HumanEatingBottle<Person> notAgoodBottle = new HumanEatingBottle<>();
+        HumanEatingBottle<Person> notAgoodBottle = new HumanEatingBottle<>();   //<Person> shoudn't be possible. Only: <Drink>, <Beer> or <Wine>.
         notAgoodBottle.fill(new Person());  //autsch, that will hurt. That poor Person.
 
         //In order to prevent more meaningless death, we make sure that bottles can only be filled with drinks:
@@ -35,8 +36,21 @@ public class Main {
         Bottle<Wine> wineBottle = new Bottle<>();
         wineBottle.fill(new Wine());    //hurray. But what if we still try to fill it with something else, such as beer?
 
-        //wineBottle.fill(new Beer());  //It looks like this bottle isn't the right type to hold on to beer. It would get bad very quickly.
+        //wineBottle.fill(new Beer());  //It looks like this bottle is actually pretty smart.
+                                        // It knows that it musn't be filled with Beer, another type of drink.
+
+        //But it will definitely agree to carry a more well defined type of wine, such as whiteWine or RedWine? Let's see:
+        wineBottle.fill(new RedWine());
+        //Yepp, it works. Since RedWine is a Subtype of Wine, the wineBottle allows us to fill this Wine into it.
 
 
+
+        //Now, some final tips and hints:
+        Bottle<?> b = new Bottle<>();   /* === */   Bottle<Drink> b2 = new Bottle<>();  //since class Bottle<T extends Drink> prevents it from eating Persons.
+        //This doesn't work:
+        /*
+        Bottle<? extends Drink> b3 = new Bottle<Drink>();
+        b3.fill(new Beer());
+        */  //Wildcards are a real pain in the butt. Better avoid them.
     }
 }
