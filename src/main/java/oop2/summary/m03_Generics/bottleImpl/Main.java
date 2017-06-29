@@ -31,6 +31,8 @@ public class Main {
         bottle.fill(new Drink());
         bottle.fill(new Beer());
         bottle.fill(new Wine());
+                        //Wait, what? Another person tries to commit suicide be being eaten by the bottle.
+        //bottle.fill(new Person());    // But luckily, our bottle was prepared for this.
 
         //Well, this looks a little messed up. Let's have a bottle that is specialised to carry only Wine:
         Bottle<Wine> wineBottle = new Bottle<>();
