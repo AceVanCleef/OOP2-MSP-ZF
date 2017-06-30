@@ -24,13 +24,13 @@ public class TestSongManager {
     public void testFindAll(){
         //given
         List<SongPM> allSongs = songManager.findAll();
+        for(SongPM song : allSongs){
+            System.out.println(song);
+        }
 
         //when
         int size = allSongs.size();
         SongPM firstSong = allSongs.get(0);
-        for(SongPM song : allSongs){
-            System.out.println(song);
-        }
 
         //then
         assertEquals(9, size);  //Anzahl Zeilen in Songs.txt
@@ -39,7 +39,15 @@ public class TestSongManager {
 
     @Test
     public void testCountSongsOf(){
+        //given
+        List<SongPM> allSongs = songManager.findAll();
+        String djBobo = allSongs.get(0).getInterpret();
 
+        //when
+        int songCount = songManager.countSongsOf(djBobo, allSongs);
+
+        //then
+        assertEquals(3, songCount); //DJ Bobo has 3 songs.
     }
 
     @Test

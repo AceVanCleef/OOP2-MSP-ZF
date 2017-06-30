@@ -46,7 +46,7 @@ public class SongManager {
 
     /** counts the amount of
      */
-    private int countSongsOf(String interpret, List<SongPM> allSongs){
+    public int countSongsOf(String interpret, List<SongPM> allSongs){       //can be private. But Junit -> public
         return (int) allSongs.stream()
                 .filter(songPM -> songPM.getInterpret().equals(interpret))
                 .count();
