@@ -1,6 +1,7 @@
 package oop2.summary.m01_Collections.module01.set;
 
-import ch.fhnw.oop2.module01.Person;
+
+import oop2.summary.m01_Collections.module01.Person;
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -63,5 +64,11 @@ public class Family {
 
         return oldest;
     }
+
+    //Mit streams:
+    public Person getMrX(Person mrX){
+       // return members.stream().filter(person -> person.getName().equals(mrX.getName())).findFirst().get();
+    }
+
 
 }

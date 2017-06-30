@@ -6,7 +6,8 @@ package oop2.summary.m01_Collections.module01.hashmap;
  * How to iterate through a HashMap:    http://stackoverflow.com/questions/1066589/iterate-through-a-hashmap
  */
 
-import ch.fhnw.oop2.module01.Person;
+
+import oop2.summary.m01_Collections.module01.Person;
 
 import java.util.HashMap;
 import java.util.HashSet;

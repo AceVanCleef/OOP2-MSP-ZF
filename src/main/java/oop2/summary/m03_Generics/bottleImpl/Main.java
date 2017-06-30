@@ -16,6 +16,8 @@ public class Main {
          *       Drink
          *       /    \
          *    Wine   Beer
+         *      |
+         *   RedWine
          *
          *  fill() == add() == setVal()
          */

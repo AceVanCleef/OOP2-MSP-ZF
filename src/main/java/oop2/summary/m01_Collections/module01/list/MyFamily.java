@@ -1,6 +1,7 @@
 package oop2.summary.m01_Collections.module01.list;
 
-import ch.fhnw.oop2.module01.MyPerson;
+
+import oop2.summary.m01_Collections.module01.MyPerson;
 
 import java.util.ArrayList;
 import java.util.List;
