@@ -20,18 +20,33 @@ public class SongManager {
     private static final String DELIMITER = ";";
     private static final String HEADLINE = "INTERPRET;TITEL;UMSATZ";
 
+    //todo: Die zweite Methode wertete diese HashMap aus und gab die gesamte Anzahl an Songs in einem Integer zurück. Diese Aufgabe gab nur etwa 4 Punkte, die andere etwa 15…?
+
+    //todo: Mit Unittest überprüfen, ob evaluateSongs() und evtl andere Methoden wie countSongsOf(), findAll() richtig funktionieren.
+
     //HashMap<String, Integer>: String = Künstlername, Integer = Anzahl Songs dieses Künstlers
     public HashMap<String, Integer> evaluateSongs(){
         List<SongPM> allSongs = findAll();
+        //gather all keys:
         List<String> keys = allSongs.stream()
                                 .map(songPM -> songPM.getInterpret())
                                 .distinct()
                                 .collect(Collectors.toList());
-        //next: get all values
+        //create the hashmap and fill it with (key, value) - pairs:
+        HashMap<String, Integer> songHeuristic = new HashMap<>();
+        for (String interpret : keys){
+            songHeuristic.put(interpret, countSongsOf(interpret, allSongs));
+        }
 
+        return songHeuristic;
+    }
 
-        //next: create and return hashmap
-
+    /** counts the amount of
+     */
+    private int countSongsOf(String interpret, List<SongPM> allSongs){
+        return (int) allSongs.stream()
+                .filter(songPM -> songPM.getInterpret().equals(interpret))
+                .count();
     }
 
     public List<SongPM> findAll() {
