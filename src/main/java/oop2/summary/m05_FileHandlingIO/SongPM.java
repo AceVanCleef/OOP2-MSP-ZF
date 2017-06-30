@@ -37,4 +37,10 @@ public class SongPM {
     public void setUmsatz(String umsatz) {
         this.umsatz = umsatz;
     }
+
+    //only for debugging:
+    @Override
+    public String toString() {
+        return "Interpret: " + getInterpret() + "\tTitel: " + getTitel() + "\t\t\tUmsatz: " + getUmsatz();
+    }
 }

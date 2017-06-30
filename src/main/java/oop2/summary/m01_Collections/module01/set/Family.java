@@ -66,9 +66,9 @@ public class Family {
     }
 
     //Mit streams:
-    public Person getMrX(Person mrX){
-       // return members.stream().filter(person -> person.getName().equals(mrX.getName())).findFirst().get();
-    }
+//    public Person getMrX(Person mrX){
+//        return members.stream().filter(person -> person.getName().equals(mrX.getName())).findFirst().get();
+//    }
 
 
 }
