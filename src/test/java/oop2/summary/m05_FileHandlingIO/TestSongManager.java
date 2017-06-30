@@ -70,4 +70,15 @@ public class TestSongManager {
 
     }
 
+    @Test
+    public void testGetTotalAmountOfSongs(){
+        //given
+        HashMap<String, Integer> songHeuristic = songManager.evaluateSongs();
+
+        //when
+        int totalSongCount = songManager.getTotalAmountOfSongs(songHeuristic);
+
+        //then
+        assertEquals(9, totalSongCount);    //Songs.txt hat insgesamt 9 Einträge.
+    }
 }

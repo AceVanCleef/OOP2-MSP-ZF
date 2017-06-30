@@ -6,6 +6,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,8 +21,15 @@ public class SongManager {
     private static final String DELIMITER = ";";
     private static final String HEADLINE = "INTERPRET;TITEL;UMSATZ";
 
-    //todo: Die zweite Methode wertete diese HashMap aus und gab die gesamte Anzahl an Songs in einem Integer zurück. Diese Aufgabe gab nur etwa 4 Punkte, die andere etwa 15…?
+    /**************************** HashMap<Interpret, Anz.Songs> auswerten **************************************/
 
+    public Integer getTotalAmountOfSongs(HashMap<String, Integer> songHeuristic){  //HashMap auswerten => gesamte Anzahl an Songs (aller Interpreten)
+        Collection<Integer> songCounts = songHeuristic.values();
+        return songCounts.stream()
+                    .mapToInt(integerObj -> integerObj.intValue())    //intValue():   Returns the value of this Integer as an int.
+                    .sum();
+        //Hinweis: .mapToInt(), damit .sum() aufgerufen werden kann.
+    }
 
 
     /**************************** HashMap<Interpret, Anz.Songs> erstellen **************************************/
