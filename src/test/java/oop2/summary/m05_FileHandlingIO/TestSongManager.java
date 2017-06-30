@@ -6,6 +6,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -47,11 +48,25 @@ public class TestSongManager {
         int songCount = songManager.countSongsOf(djBobo, allSongs);
 
         //then
-        assertEquals(3, songCount); //DJ Bobo has 3 songs.
+        assertEquals(3, songCount); //DJ Bobo has 3 songs in Songs.txt.
     }
 
     @Test
     public void testEvaluateSongs(){
+        //given
+        HashMap<String, Integer> songHeuristic = songManager.evaluateSongs();
+
+        //when
+        boolean djBoboAsKey = songHeuristic.containsKey("DJ Bobo");
+
+        //then
+        assertTrue(djBoboAsKey);
+
+        //when
+        int songCount = songHeuristic.get("DJ Bobo");
+
+        //then
+        assertEquals(3, songCount);
 
     }
 
