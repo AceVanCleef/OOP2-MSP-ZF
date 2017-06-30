@@ -24,6 +24,9 @@ public class SongManager {
 
     //todo: Mit Unittest überprüfen, ob evaluateSongs() und evtl andere Methoden wie countSongsOf(), findAll() richtig funktionieren.
 
+
+    /**************************** HashMap<Interpret, Anz.Songs> erstellen **************************************/
+
     //HashMap<String, Integer>: String = Künstlername, Integer = Anzahl Songs dieses Künstlers
     public HashMap<String, Integer> evaluateSongs(){
         List<SongPM> allSongs = findAll();
@@ -48,6 +51,9 @@ public class SongManager {
                 .filter(songPM -> songPM.getInterpret().equals(interpret))
                 .count();
     }
+
+
+    /**************************** File Einlesen **************************************/
 
     public List<SongPM> findAll() {
         try (Stream<String> streamOfLines = getStreamOfLines(FILE_NAME)) {        // try-with-resources schliesst automatisch den Stream
