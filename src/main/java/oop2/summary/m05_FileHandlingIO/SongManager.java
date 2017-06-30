@@ -93,7 +93,7 @@ public class SongManager {
     }
 
 
-    /************************** Save Countries To File **************************/
+    /************************** Save Songs To File **************************/
 
     public void save(List<SongPM> allSongs) {
         try {
