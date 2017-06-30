@@ -6,6 +6,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -89,5 +90,32 @@ public class SongManager {
 
     public static void main(String[] args){
 
+    }
+
+
+    /************************** Save Countries To File **************************/
+
+    public void save(List<SongPM> allSongs) {
+        try {
+            //ein SongPM zu einem String in Form "interpret;titel;..."
+            List<String> songsAsString = allSongs.stream()
+                    .map(dto -> convertToString(dto))
+                    .collect(Collectors.toList());
+
+
+            songsAsString.add(0, HEADLINE);      // Add Headline to List at the beginning
+
+            Files.write(getPath(FILE_NAME), songsAsString, StandardCharsets.UTF_8, StandardOpenOption.TRUNCATE_EXISTING);    // Write everything into file
+
+        } catch (IOException e) {
+            throw new IllegalStateException(e);
+        }
+    }
+
+
+    protected String convertToString(SongPM songPM) {
+        return songPM.getInterpret() + DELIMITER +
+                songPM.getTitel() + DELIMITER +
+                songPM.getUmsatz();
     }
 }

@@ -6,6 +6,7 @@
 //import java.nio.file.Path;
 //import java.nio.file.Paths;
 //import java.nio.file.Files;
+//import java.nio.file.StandardOpenOption;
 //import java.util.List;
 //import java.util.stream.Collectors;
 //import java.util.stream.Stream;
@@ -38,5 +39,35 @@
 //        } catch (URISyntaxException e) {
 //            throw new IllegalArgumentException(e);
 //        }
+//    }
+//
+//
+//    /************************** Save Countries To File **************************/
+//
+//    public void save(List<CountryDTO> dtos) {
+//        try {
+//            //1 dto -> einem String in form id;name;...
+//            List<String> dtosAsString = dtos.stream()
+//                    .map(dto -> convertToString(dto))
+//                    .collect(Collectors.toList());
+//
+//
+//            dtosAsString.add(0, HEADLINE);      // Add Headline to List at the beginning
+//
+//            Files.write(getPath(FILE_NAME), dtosAsString, StandardCharsets.UTF_8, StandardOpenOption.TRUNCATE_EXISTING);    // Write everything into file
+//
+//        } catch (IOException e) {
+//            throw new IllegalStateException(e);
+//        }
+//    }
+//
+//
+//    protected String convertToString(CountryDTO dto) {
+//        return dto.getID() + DELIMITER +
+//                dto.getNAME() + DELIMITER +
+//                // usw.
+//                dto.getNAME_LOCAL() + DELIMITER +
+//                dto.getCONTINENT();
+//
 //    }
 //}
