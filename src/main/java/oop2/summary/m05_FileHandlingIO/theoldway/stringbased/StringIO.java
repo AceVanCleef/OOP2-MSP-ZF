@@ -13,6 +13,8 @@ public class StringIO {
     private static final String DELIMITER = ";";
     private static final String HEADLINE = "INTERPRET;TITEL;UMSATZ";
 
+    /**************************** File Einlesen **************************************/
+
     public List<String[]> findAll() throws IOException{
 
         BufferedReader inputStream = null;      //Reads the File
@@ -39,18 +41,22 @@ public class StringIO {
         return collector;
     }
 
+    /**************************** In File speichern **************************************/
+
     public void save(List<String[]> allSongs) throws IOException {
 
-        PrintWriter outputStream = null;
+        BufferedWriter outputStream = null;     //Alternativ: PrintWriter, da BufferedWriter.write(s) + BufferedWriter.newLine() = PrintWriter.println(s).
 
         try{
-            outputStream = new PrintWriter(new FileWriter("output.txt"));
+            outputStream = new BufferedWriter(new FileWriter("output.txt"));
 
-            outputStream.println(HEADLINE);
+            outputStream.write(HEADLINE);
+            outputStream.newLine();
 
             for(String[] song : allSongs){
                 String line = song[0] + DELIMITER + song[1] + DELIMITER + song[2];
-                outputStream.println(line);
+                outputStream.write(line);
+                outputStream.newLine();
             }
         }
         finally {
