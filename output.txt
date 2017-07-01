@@ -1,0 +1,4 @@
+INTERPRET;TITEL;UMSATZ
+DJ Bobo;Hallelu;120000
+DJ Steve;Mamamia;220000
+DJ Bobo;Chiuaua;100000

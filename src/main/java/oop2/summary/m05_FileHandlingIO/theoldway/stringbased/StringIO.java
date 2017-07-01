@@ -19,7 +19,6 @@ public class StringIO {
 
         List<String[]> collector = new ArrayList<>();        //collect all Songs
 
-        System.out.println(new File("").getAbsolutePath());
 
         try{
             inputStream = new BufferedReader(new InputStreamReader(getPath(FILE_NAME)));  //Liest Zeile als String.
@@ -38,6 +37,27 @@ public class StringIO {
         }
 
         return collector;
+    }
+
+    public void save(List<String[]> allSongs) throws IOException {
+
+        PrintWriter outputStream = null;
+
+        try{
+            outputStream = new PrintWriter(new FileWriter("output.txt"));
+
+            outputStream.println(HEADLINE);
+
+            for(String[] song : allSongs){
+                String line = song[0] + DELIMITER + song[1] + DELIMITER + song[2];
+                outputStream.println(line);
+            }
+        }
+        finally {
+            if(outputStream != null){
+                outputStream.close();
+            }
+        }
     }
 
     private InputStream getPath(String filename){

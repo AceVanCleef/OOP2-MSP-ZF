@@ -99,7 +99,7 @@ public class SongManager {
         try {
             //ein SongPM zu einem String in Form "interpret;titel;..."
             List<String> songsAsString = allSongs.stream()
-                    .map(dto -> convertToString(dto))
+                    .map(songPM -> convertToString(songPM))
                     .collect(Collectors.toList());
 
 
