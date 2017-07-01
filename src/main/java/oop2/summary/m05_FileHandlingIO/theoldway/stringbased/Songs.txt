@@ -1,0 +1,10 @@
+INTERPRET;TITEL;UMSATZ
+DJ Bobo;Hallela;235
+Usher;Help;398
+Usher;Asdf;777
+DJ Bobo;kaka;936
+Usher;Gubi;210
+Beatles;Mari;987
+DJ Bobo;Karneval;12
+Beatles;Tender me softly;1222
+Usher;WTF mum;65
