@@ -9,7 +9,10 @@ package oop2.summary.m06_Exam_HS15;
  *
  */
 
+import com.sun.xml.internal.bind.v2.util.CollisionCheckStack;
+
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class PostItem {
 
@@ -154,6 +157,22 @@ public class PostItem {
                 .filter(postItem -> ((Character)postItem.getDispatchMode()).equals('E'))
                 .mapToDouble(postItem -> postItem.getWeight())
                 .sum();
+    }
+
+    public <T extends PostItem> List<T> extractExpress(T[] input){
+
+        List<T> temp = Arrays.asList(input);
+
+/*      // Variante 2
+        for (T o : input) {
+            temp.add(o);
+        }
+*/
+        return temp.stream().filter(t -> "E".equals(t.getDispatchMode())).collect(Collectors.toList());
+    }
+
+    public <T> List<T> removeDoubles(List<T> input){
+        return input.stream().distinct().collect(Collectors.toList());
     }
 }
 
