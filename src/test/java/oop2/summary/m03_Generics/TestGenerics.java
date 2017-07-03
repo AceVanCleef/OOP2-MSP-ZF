@@ -228,6 +228,16 @@ public class TestGenerics {
     }
 
     @Test
+    public void testWildClassReadOnly(){
+        Box<? extends B> wildBox = new Box<B>();
+
+        // wildBox.setValue(new B());  //does NOT work. ? are read only.
+
+        wildBox = bBox;
+        // wildBox.setValue(new B());      //does NOT work. ? are read only.
+    }
+
+    @Test
     public void testUnacceptableWildcardInstantiation(){
         //NOT working
         /*

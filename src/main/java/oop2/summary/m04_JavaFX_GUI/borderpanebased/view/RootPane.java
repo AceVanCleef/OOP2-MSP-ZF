@@ -58,7 +58,7 @@ public class RootPane extends BorderPane {
     }
 
     private void layoutParts(){
-        /*** Gridpane: ***/
+        /*** BorderPane: ***/
         this.setTop(titleLabel);
         this.setCenter(center);
         this.setBottom(button);     //button immer ganz unten
